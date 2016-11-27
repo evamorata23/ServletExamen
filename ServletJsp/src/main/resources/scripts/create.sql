@@ -1,8 +1,10 @@
 create table IF NOT EXISTS PAIS(
-	NOMBRE VARCHAR(25),
+	PAIS VARCHAR(25),
 	IDIOMA VARCHAR(25),
 	);
-
-create table IF NOT EXISTS IDIOMAS(
+	
+create table IF NOT EXISTS IDIOMA(
 	IDIOMA VARCHAR(25),
 	);
+	
+	

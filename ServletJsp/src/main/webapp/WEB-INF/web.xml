@@ -21,16 +21,6 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Idioma</servlet-name>
-        <servlet-class>ServletIdioma</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>Idioma</servlet-name>
-        <url-pattern>hello3</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
         <servlet-name>Eliminar</servlet-name>
         <servlet-class>ServletEliminar</servlet-class>
     </servlet>

@@ -7,24 +7,24 @@
 <title>Insert title here</title>
 </head>
 	<body>
-		<form action="hello3" method="post" name="form1">
+		<form action="hello" method="post" name="form1">
 			<h1 align="center">Servlet</h1>
 			<table align="center" border="1" bgcolor="cyan">
 				<tr>
-					<td>Pais</td>
-					<td><input type="text" name="nombre" size="20"></td>
+					<td>Pais:</td>
+					<td><input type="text" name="country" size="20"></td>
 				</tr>
 				<tr>
-					<td>Seleccionar Idioma</td>
+					<td>Seleccionar Idioma:</td>
 					<td>
-						<select name="idioma2">
+						<select name="language1">
 		  						<option value=""></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>Introducir Idioma</td>
-					<td><input type="text" name="language" size="20"></td>
+					<td>Introducir Idioma:</td>
+					<td><input type="text" name="language2" size="20"></td>
 				</tr>
 				<tr>
 					<td align="center">

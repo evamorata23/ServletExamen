@@ -9,26 +9,26 @@
 			
 		</script>
 	</head>
-	<body onload="calcular_edad()">
+	<body>
 		<table align="center">
 				<tr>
-					<td>Nombre Pais:</td>
-					<td><b><%= request.getParameter("nombre") %></b></td>
+					<td>Pais:</td>
+					<td><b><%= request.getParameter("country") %></b></td>
 				</tr>
 				<tr>
 					<td>Seleccionar Idioma:</td>
-					
+					<td><b><%= request.getParameter("language1") %></b></td>
 				</tr>
 				<tr>
 					<td>Introducir Idioma:</td>
-					<td><b><%= request.getParameter("idioma") %></b></td>
+					<td><input type="text"  id="language2" size="10"><b></b></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="volver" onclick="history.back()"></td>
 					<td>
 						<form method="post" action="hello2">
 							<input type="submit" value="Eliminar Idioma">
-							<input type="hidden" value="<%=request.getParameter("idioma")%>" name="idioma">
+							<input type="hidden" value="<%=request.getParameter("country")%>" name="contry">
 						</form>
 					</td>
 				</tr>
