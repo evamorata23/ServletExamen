@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 	<body>
-		<form action="hello" method="post" name="form1">
+		<form action="listado" method="post" name="form1">
 			<h1 align="center">Servlet</h1>
 			<table align="center" border="1" bgcolor="cyan">
 				<tr>

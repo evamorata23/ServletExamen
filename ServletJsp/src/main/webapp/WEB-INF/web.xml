@@ -9,25 +9,25 @@
         This is a simple web application with a source code organization
         based on the recommendations of the Application Developer's Guide.
     </description>
-
+    
     <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>Servlet</servlet-class>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>servlet.WelcomeServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>hello</url-pattern>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>welcome</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>Eliminar</servlet-name>
-        <servlet-class>ServletEliminar</servlet-class>
-    </servlet>
 
+    <servlet>
+        <servlet-name>ListadoServlet</servlet-name>
+        <servlet-class>servlet.ListadoServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
-        <servlet-name>Eliminar</servlet-name>
-        <url-pattern>hello2</url-pattern>
+        <servlet-name>ListadoServlet</servlet-name>
+        <url-pattern>listado</url-pattern>
     </servlet-mapping>
     
     <welcome-file-list>

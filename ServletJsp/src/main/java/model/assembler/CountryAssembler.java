@@ -9,6 +9,7 @@ public class CountryAssembler {
 		Country c = new Country();
 		String country = req.getParameter("country");
 		
+		c.setCountry(country);
 		//Nos devolvera un idioma que necesitamos para pais
 		LanguageAssembler la = new LanguageAssembler();
 		la.assembleLanguageFrom(req);

@@ -69,7 +69,9 @@ public class Repository {
 	
 	private void close(PreparedStatement prepareStatement) {
 		try {
-			prepareStatement.close();
+			if(prepareStatement != null){
+				prepareStatement.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -78,7 +80,9 @@ public class Repository {
 	
 	private void close(ResultSet resultSet) {
 		try {
-			resultSet.close();
+			if (resultSet != null) {
+				resultSet.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -138,7 +142,7 @@ public class Repository {
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM USER");
+			prepareStatement = conn.prepareStatement("SELECT * FROM PAIS");
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
 				Country countryInDatabase = new Country();
