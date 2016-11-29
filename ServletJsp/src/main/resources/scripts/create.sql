@@ -1,10 +1,12 @@
 create table IF NOT EXISTS PAIS(
-	PAIS VARCHAR(25),
-	IDIOMA VARCHAR(25),
+	idPais int IDENTITY(1,1) PRIMARY KEY,
+	nombrePais VARCHAR(25),
+	nombreIdioma VARCHAR(25),
 	);
 	
 create table IF NOT EXISTS IDIOMA(
-	IDIOMA VARCHAR(25),
+	idIdioma int IDENTITY(1,1) PRIMARY KEY,
+	nombreIdioma VARCHAR(25),
 	);
 	
 	

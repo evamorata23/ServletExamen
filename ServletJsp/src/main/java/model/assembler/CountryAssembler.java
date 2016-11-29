@@ -12,15 +12,14 @@ public class CountryAssembler {
 		String language1 = req.getParameter("language1");
 		String language2 = req.getParameter("language2");
 		
-		String prueba = "";
-		
 		c.setCountry(country);
-		if(language1 == "0"){
-			c.setLanguage(language2);
-		}else{
-			c.setLanguage(language1);
-		}		
-		prueba = c.getCountry();
+		
+		if(language1 == 0){
+			
+		}
+		c.setLanguage(language1);
+		c.setLanguage(language2);
+		
 		return c;
 	}
 }

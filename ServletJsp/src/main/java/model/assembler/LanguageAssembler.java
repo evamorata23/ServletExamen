@@ -8,10 +8,10 @@ import model.assembler.*;
 public class LanguageAssembler {
 	public static Language assembleLanguageFrom(HttpServletRequest req) {
 		Language language = new Language();
-		String language1 = req.getParameter("idioma");
-		String language2 = req.getParameter("course");
+		String language1 = req.getParameter("language1");
+		String language2 = req.getParameter("language2");
 		
-		if(language1 == "0"){
+		if(language1 == ""){
 			language.setLanguage(language2);
 		}else{
 			language.setLanguage(language1);
