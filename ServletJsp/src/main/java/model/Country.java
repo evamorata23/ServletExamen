@@ -3,7 +3,7 @@ package model;
 public class Country {
 	private int idpais;
 	private String country;
-	private String language1;
+	private String language;
 	
 	
 	public int getIdpais() {
@@ -23,10 +23,10 @@ public class Country {
 	}
 
 	public String getLanguage() {
-		return language1;
+		return language;
 	}
 
 	public void setLanguage(String language1) {
-		this.language1 = language1;
+		this.language = language;
 	}
 }
