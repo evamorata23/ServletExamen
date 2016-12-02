@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Form;
 import service.Service;
-import model.Language;
-import model.Country;
 
 public class ListadoServlet extends HttpServlet {
 	
@@ -19,18 +18,14 @@ public class ListadoServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Country> listAllCountry = servicio.searchAllCountry();
-		List<Language> listAllLanguage = servicio.searchAllLanguage();
-		
-		req.setAttribute("listAllCountry", listAllCountry);
-		req.setAttribute("listAllLanguage", listAllLanguage);
-		
+		List<Form> listAllForms = servicio.listAllForms();
+		req.setAttribute("listAllForms", listAllForms);
 		redirect(req,resp);
 	}
 	
 	
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listado.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/end.jsp");
 		dispatcher.forward(req,resp);
 	}
 }

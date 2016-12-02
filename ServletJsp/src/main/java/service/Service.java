@@ -1,66 +1,36 @@
 package service;
 
-import java.sql.Connection;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import connection.ConnectionH2;
-import connection.ConnectionManager;
+import model.Form;
+import model.Language;
+import model.assembler.FormAssembler;
 import repository.Repository;
-import model.*;
-import model.assembler.CountryAssembler;
-import model.assembler.LanguageAssembler;
 
 public class Service {
-	
-	
 	private Repository repository = new Repository();
 	
-	public Country assemblePaisFromRequest(HttpServletRequest req) {
-		return CountryAssembler.assemblePaisFrom(req);
+	public Form assembleFormFromRequest(HttpServletRequest req) {
+		return FormAssembler.assembleUserFrom(req);
 	}
 	
-	public Language assembleLanguageFromRequest(HttpServletRequest req) {
-		return LanguageAssembler.assembleLanguageFrom(req);
+	public void insert(Form formulary) {
+		repository.insert(formulary);
 	}
 	
-	public void insertOrUpdateCountry(Country countryForm) {
-		Country countryInDatabase = repository.search(countryForm);
-		if(null == countryInDatabase){
-			repository.insert(countryForm);
-		}else{
-			repository.update(countryForm);
-		}
+	public void delete(String language) {
+		repository.deleteLanguage(language);
 	}
 	
-	public void insertOrUpdateLanguage(Language languageForm) {
-		Language languageInDatabase = repository.search(languageForm);
-		if(null == languageInDatabase){
-			repository.insert(languageForm);
-		}else{
-			repository.update(languageForm);
-		}
+	public List<Form> listAllForms() {
+		return repository.searchAll();
 	}
 	
-	public List<Country> searchAllCountry() {
-		return repository.searchAllCountry();
+	public List<Language> listAllLang() {
+		return repository.searchLanguage();
 	}
 	
-	public List<Language> searchAllLanguage() {
-		return repository.searchAllLanguage();
-	}
-	
-	public List<Country> searchCountriesByLanguage(Language language) {
-		return repository.searchCountriesByLanguage(language);
-	}
-	
-	public Repository getRepository() {
-		return repository;
-	}
-
-	public void setRepository(Repository repository) {
-		this.repository = repository;
-	}
 }
+
