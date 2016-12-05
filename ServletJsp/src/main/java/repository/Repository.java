@@ -110,6 +110,7 @@ public class Repository {
 					preparedStatement.executeUpdate();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 		}
@@ -117,7 +118,7 @@ public class Repository {
 		manager.close(conn);
 	}
 	
-	public void deleteLanguage(String language){
+	public int findLanguageId(String language) {
 		int idLanguage = 0;
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
@@ -126,29 +127,35 @@ public class Repository {
 			prepareStatement = conn.prepareStatement("SELECT IDIDIOMA FROM IDIOMA WHERE IDIOMA = ?");
 			prepareStatement.setString(1, language);
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				idLanguage = resultSet.getInt(1);
-			}			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException(e);}
-		delete(idLanguage);	
+			throw new RuntimeException(e);
+		}
+		return idLanguage;
 	}
-
-	public void delete(int IdIdioma) {
+	
+	public void deleteCountry(int IdIdioma) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("DELETE FROM IDIOMA WHERE " +
-					"IDIDIOMA = ?");
+			preparedStatement = conn.prepareStatement("DELETE FROM PAIS WHERE IDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
-			
 			preparedStatement.executeUpdate();
-			
-			preparedStatement = conn.prepareStatement("DELETE FROM PAIS WHERE " +
-					"IDIOMA = ?");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		manager.close(conn);
+	}
+	
+	public void deleteLanguage(int IdIdioma) {
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("DELETE FROM IDIOMA WHERE IDIDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
-			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
