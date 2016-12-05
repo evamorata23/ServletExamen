@@ -41,7 +41,10 @@ public class Repository {
 			try{
 			close(resultSet);
 			close(prepareStatement);
-			}catch(Exception e){}
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
 		}
 		manager.close(conn);
 		return listLanguage;
@@ -175,7 +178,10 @@ public class Repository {
 			try{
 			close(resultSet);
 			close(prepareStatement);
-			}catch(Exception e){}
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
 		}
 		manager.close(conn);
 		return listForm;

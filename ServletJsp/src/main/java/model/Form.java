@@ -19,10 +19,4 @@ public class Form {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-
-	
-
-	
-	
-
 }

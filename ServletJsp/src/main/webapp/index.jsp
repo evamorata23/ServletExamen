@@ -29,8 +29,8 @@
 						<select name="language1">
 		  						<option value=null> </option>
 		 						<%if(null != languages && !languages.isEmpty()){
-										for (Language languages2 : languages) {
-											String data = "<option value=\""+languages2.getLanguage()+"\">"+languages2.getLanguage()+"</option>";
+										for (Language language : languages) {
+											String data = "<option value=\"" + language.getLanguage() + "\">" + language.getLanguage() + "</option>";
 											out.println(data);
 										}
 	

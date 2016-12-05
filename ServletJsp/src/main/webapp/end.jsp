@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 <form action="cargarListado" method="post">
@@ -31,16 +31,16 @@
 	<tbody>
 	<%
 		if(null != forms && !forms.isEmpty()){
-			for (Form form2 : forms) {
+			for (Form form : forms) {
 				out.println("<tr>");
 				out.println("<td>");
-				out.println(form2.getCountry());
+				out.println(form.getCountry());
 				out.println("</td>");
 				out.println("<td>");
-				out.println(form2.getLanguage());
+				out.println(form.getLanguage());
 				out.println("</td>");
 				out.println("<td>");
-				out.println("<a href='warning.jsp?id="+form2.getLanguage()+"'>x</a>");
+				out.println("<a href='warning.jsp?id="+form.getLanguage()+"'>x</a>");
 				out.println("</td>");
 				out.println("</tr>");
 			}	

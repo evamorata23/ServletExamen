@@ -17,9 +17,4 @@ public class Language {
 	public void setLanguage(String language) {
 		Language = language;
 	}
-	
-	
-	
-	
-
 }
