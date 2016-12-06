@@ -68,21 +68,21 @@ public class Repository {
 		}
 	}
 	// insert
-	public void insert(Form formulary) {
+	public void insert(Form form) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		int id=0;
 		try {
 			preparedStatement = conn.prepareStatement("SELECT * FROM IDIOMA WHERE IDIOMA = ?");
-			preparedStatement.setString(1, formulary.getLanguage());
+			preparedStatement.setString(1, form.getLanguage());
 			System.out.println(preparedStatement);
-			System.out.println(formulary.getLanguage());
+			System.out.println(form.getLanguage());
 			resultSet = preparedStatement.executeQuery();
 			if(!resultSet.next()){	
 				preparedStatement = conn.prepareStatement("INSERT INTO IDIOMA (IDIOMA)" +
 						"VALUES (?)");
-				preparedStatement.setString(1, formulary.getLanguage());
+				preparedStatement.setString(1, form.getLanguage());
 				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -91,9 +91,9 @@ public class Repository {
 		}finally {
 			try {
 				preparedStatement = conn.prepareStatement("SELECT * FROM IDIOMA WHERE IDIOMA = ?");
-				preparedStatement.setString(1, formulary.getLanguage());
+				preparedStatement.setString(1, form.getLanguage());
 				System.out.println(preparedStatement);
-				System.out.println(formulary.getLanguage());
+				System.out.println(form.getLanguage());
 				resultSet = preparedStatement.executeQuery();
 				while(resultSet.next()){	
 					id = resultSet.getInt(1);
@@ -105,7 +105,7 @@ public class Repository {
 				try {
 					preparedStatement = conn.prepareStatement("INSERT INTO PAIS (PAIS,IDIOMA)" +
 							"VALUES (?,?)");
-					preparedStatement.setString(1, formulary.getCountry());
+					preparedStatement.setString(1, form.getCountry());
 					preparedStatement.setInt(2, id);
 					preparedStatement.executeUpdate();
 				} catch (SQLException e) {
@@ -173,10 +173,10 @@ public class Repository {
 					+ "FROM PAIS INNER JOIN IDIOMA ON PAIS.IDIOMA = IDIOMA.IDIDIOMA");
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				Form formulary = new Form();
-				formulary.setCountry(resultSet.getString(1));
-				formulary.setLanguage(resultSet.getString(2));
-				listForm.add(formulary);
+				Form form = new Form();
+				form.setCountry(resultSet.getString(1));
+				form.setLanguage(resultSet.getString(2));
+				listForm.add(form);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
