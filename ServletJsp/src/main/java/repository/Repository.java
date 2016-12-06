@@ -18,12 +18,11 @@ public class Repository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new ConnectionH2();
 	
-	Connection conn = manager.open(jdbcUrl);
-	PreparedStatement preparedStatement = null;
-	ResultSet resultSet = null;
-	
 	public List<Language> searchLanguage() {
 		List<Language> listLanguage= new ArrayList<Language>();
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = conn.prepareStatement(""
 					+ "SELECT IdIdioma, IDIOMA FROM IDIOMA");
@@ -71,6 +70,9 @@ public class Repository {
 	// insert
 	public void insert(Form form) {
 		int id=0;
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			String idioma = form.getLanguage();
 			if(findLanguageId(idioma)==0){	
@@ -93,6 +95,9 @@ public class Repository {
 	
 	public int findLanguageId(String language) {
 		int idLanguage = 0;
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = conn.prepareStatement("SELECT IDIDIOMA FROM IDIOMA WHERE IDIOMA = ?");
 			preparedStatement.setString(1, language);
@@ -108,6 +113,9 @@ public class Repository {
 	}
 	
 	public void deleteCountry(int IdIdioma) {
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM PAIS WHERE IDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
@@ -119,6 +127,9 @@ public class Repository {
 	}
 	
 	public void deleteLanguage(int IdIdioma) {
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM IDIOMA WHERE IDIDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
@@ -131,6 +142,9 @@ public class Repository {
 	
 	public List<Form> searchAll() {
 		List<Form> listForm= new ArrayList<Form>();
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = conn.prepareStatement("SELECT PAIS.PAIS, IDIOMA.IDIOMA "
 					+ "FROM PAIS INNER JOIN IDIOMA ON PAIS.IDIOMA = IDIOMA.IDIDIOMA");
