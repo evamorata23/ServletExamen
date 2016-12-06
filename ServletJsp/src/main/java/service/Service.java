@@ -21,7 +21,9 @@ public class Service {
 	}
 	
 	public void delete(String language) {
-		repository.deleteLanguage(language);
+		int i=repository.findLanguageId(language);
+		repository.deleteLanguage(i);
+		repository.deleteCountry(i);
 	}
 	
 	public List<Form> listAllForms() {

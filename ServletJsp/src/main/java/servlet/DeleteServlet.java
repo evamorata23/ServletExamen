@@ -25,8 +25,8 @@ private Service servicio = new  Service();
 		
 	}
 
-	protected void redirect(String destino, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destino);
+	protected void redirect(String end, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(end);
 		dispatcher.forward(req,resp);
 	}
 }
