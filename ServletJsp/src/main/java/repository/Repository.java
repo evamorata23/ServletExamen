@@ -74,45 +74,20 @@ public class Repository {
 		ResultSet resultSet = null;
 		int id=0;
 		try {
-			preparedStatement = conn.prepareStatement("SELECT * FROM IDIOMA WHERE IDIOMA = ?");
-			preparedStatement.setString(1, form.getLanguage());
-			System.out.println(preparedStatement);
-			System.out.println(form.getLanguage());
-			resultSet = preparedStatement.executeQuery();
-			if(!resultSet.next()){	
-				preparedStatement = conn.prepareStatement("INSERT INTO IDIOMA (IDIOMA)" +
-						"VALUES (?)");
-				preparedStatement.setString(1, form.getLanguage());
+			String idioma = form.getLanguage();
+			if(findLanguageId(idioma)==0){	
+				preparedStatement = conn.prepareStatement("INSERT INTO IDIOMA (IDIOMA)" + "VALUES (?)");
+				preparedStatement.setString(1,idioma);
 				preparedStatement.executeUpdate();
 			}
+			preparedStatement = conn.prepareStatement("INSERT INTO PAIS (PAIS,IDIOMA)" + "VALUES (?,?)");
+			preparedStatement.setString(1, form.getCountry());
+			preparedStatement.setInt(2, findLanguageId(idioma));
+
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
-			try {
-				preparedStatement = conn.prepareStatement("SELECT * FROM IDIOMA WHERE IDIOMA = ?");
-				preparedStatement.setString(1, form.getLanguage());
-				System.out.println(preparedStatement);
-				System.out.println(form.getLanguage());
-				resultSet = preparedStatement.executeQuery();
-				while(resultSet.next()){	
-					id = resultSet.getInt(1);
-					System.out.println(id);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					preparedStatement = conn.prepareStatement("INSERT INTO PAIS (PAIS,IDIOMA)" +
-							"VALUES (?,?)");
-					preparedStatement.setString(1, form.getCountry());
-					preparedStatement.setInt(2, id);
-					preparedStatement.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
-			}
 		}
 		close(preparedStatement);
 		manager.close(conn);
