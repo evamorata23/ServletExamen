@@ -2,8 +2,8 @@ package model;
 
 public class Language {
 	
-	int idLanguage;
-	String Language;
+	private int idLanguage;
+	private String Language;
 	
 	public int getIdLanguage() {
 		return idLanguage;
