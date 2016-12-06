@@ -18,15 +18,16 @@ public class Repository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new ConnectionH2();
 	
+	Connection conn = manager.open(jdbcUrl);
+	PreparedStatement preparedStatement = null;
+	ResultSet resultSet = null;
+	
 	public List<Language> searchLanguage() {
 		List<Language> listLanguage= new ArrayList<Language>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement(""
+			preparedStatement = conn.prepareStatement(""
 					+ "SELECT IdIdioma, IDIOMA FROM IDIOMA");
-			resultSet = prepareStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()){
 				System.out.println(resultSet.getString(2));
 				Language language = new Language();
@@ -40,7 +41,7 @@ public class Repository {
 		}finally {
 			try{
 			close(resultSet);
-			close(prepareStatement);
+			close(preparedStatement);
 			}catch(Exception e){
 				e.printStackTrace();
 				throw new RuntimeException(e);
@@ -69,9 +70,6 @@ public class Repository {
 	}
 	// insert
 	public void insert(Form form) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
 		int id=0;
 		try {
 			String idioma = form.getLanguage();
@@ -95,13 +93,10 @@ public class Repository {
 	
 	public int findLanguageId(String language) {
 		int idLanguage = 0;
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT IDIDIOMA FROM IDIOMA WHERE IDIOMA = ?");
-			prepareStatement.setString(1, language);
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT IDIDIOMA FROM IDIOMA WHERE IDIOMA = ?");
+			preparedStatement.setString(1, language);
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				idLanguage = resultSet.getInt(1);
 			}
@@ -113,8 +108,6 @@ public class Repository {
 	}
 	
 	public void deleteCountry(int IdIdioma) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM PAIS WHERE IDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
@@ -126,8 +119,6 @@ public class Repository {
 	}
 	
 	public void deleteLanguage(int IdIdioma) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM IDIOMA WHERE IDIDIOMA = ?");
 			preparedStatement.setInt(1, IdIdioma);
@@ -140,13 +131,10 @@ public class Repository {
 	
 	public List<Form> searchAll() {
 		List<Form> listForm= new ArrayList<Form>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT PAIS.PAIS, IDIOMA.IDIOMA "
+			preparedStatement = conn.prepareStatement("SELECT PAIS.PAIS, IDIOMA.IDIOMA "
 					+ "FROM PAIS INNER JOIN IDIOMA ON PAIS.IDIOMA = IDIOMA.IDIDIOMA");
-			resultSet = prepareStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()){
 				Form form = new Form();
 				form.setCountry(resultSet.getString(1));
@@ -159,7 +147,7 @@ public class Repository {
 		}finally {
 			try{
 			close(resultSet);
-			close(prepareStatement);
+			close(preparedStatement);
 			}catch(Exception e){
 				e.printStackTrace();
 				throw new RuntimeException(e);
