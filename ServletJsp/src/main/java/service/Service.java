@@ -16,8 +16,12 @@ public class Service {
 		return FormAssembler.assembleUserFrom(req);
 	}
 	
-	public void insert(Form form) {
-		repository.insert(form);
+	public void insertLanguage(Form form) {
+		repository.insertLanguage(form);
+	}
+	
+	public void insertCountry(Form form) {
+		repository.insertCountry(form);
 	}
 	
 	public void delete(String language) {

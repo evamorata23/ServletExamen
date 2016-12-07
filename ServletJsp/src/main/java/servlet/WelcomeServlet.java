@@ -21,7 +21,8 @@ public class WelcomeServlet extends HttpServlet{
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Form form = service.assembleFormFromRequest(req);
-		service.insert(form);
+		service.insertLanguage(form);
+		service.insertCountry(form);
 		redirect(req,resp);
 	}
 	

@@ -68,7 +68,7 @@ public class Repository {
 		}
 	}
 	// insert
-	public void insert(Form form) {
+	public void insertLanguage(Form form) {
 		int id=0;
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -80,12 +80,27 @@ public class Repository {
 				preparedStatement.setString(1,idioma);
 				preparedStatement.executeUpdate();
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		close(preparedStatement);
+		manager.close(conn);
+	}
+	
+	public void insertCountry(Form form){
+		int id=0;
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try{
+			String idioma = form.getLanguage();
 			preparedStatement = conn.prepareStatement("INSERT INTO PAIS (PAIS,IDIOMA)" + "VALUES (?,?)");
 			preparedStatement.setString(1, form.getCountry());
 			preparedStatement.setInt(2, findLanguageId(idioma));
 
 			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
