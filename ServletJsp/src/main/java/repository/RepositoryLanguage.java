@@ -13,7 +13,7 @@ import connection.ConnectionManager;
 import model.Form;
 import model.Language;
 
-public class Repository {
+public class RepositoryLanguage {
 	
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new ConnectionH2();
@@ -88,26 +88,6 @@ public class Repository {
 		manager.close(conn);
 	}
 	
-	public void insertCountry(Form form){
-		int id=0;
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		try{
-			String idioma = form.getLanguage();
-			preparedStatement = conn.prepareStatement("INSERT INTO PAIS (PAIS,IDIOMA)" + "VALUES (?,?)");
-			preparedStatement.setString(1, form.getCountry());
-			preparedStatement.setInt(2, findLanguageId(idioma));
-
-			preparedStatement.executeUpdate();
-		}catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		close(preparedStatement);
-		manager.close(conn);
-	}
-	
 	public int findLanguageId(String language) {
 		int idLanguage = 0;
 		Connection conn = manager.open(jdbcUrl);
@@ -125,20 +105,6 @@ public class Repository {
 			throw new RuntimeException(e);
 		}
 		return idLanguage;
-	}
-	
-	public void deleteCountry(int IdIdioma) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		try {
-			preparedStatement = conn.prepareStatement("DELETE FROM PAIS WHERE IDIOMA = ?");
-			preparedStatement.setInt(1, IdIdioma);
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		manager.close(conn);
 	}
 	
 	public void deleteLanguage(int IdIdioma) {

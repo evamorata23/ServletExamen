@@ -7,36 +7,37 @@ import javax.servlet.http.HttpServletRequest;
 import model.Form;
 import model.Language;
 import model.assembler.FormAssembler;
-import repository.Repository;
+import repository.RepositoryLanguage;
+import repository.RepositoryCountry;
 
 public class Service {
-	private Repository repository = new Repository();
+	private RepositoryLanguage repL = new RepositoryLanguage();
+	private RepositoryCountry repC = new RepositoryCountry();
 	
 	public Form assembleFormFromRequest(HttpServletRequest req) {
 		return FormAssembler.assembleUserFrom(req);
 	}
 	
 	public void insertLanguage(Form form) {
-		repository.insertLanguage(form);
+		repL.insertLanguage(form);
 	}
 	
 	public void insertCountry(Form form) {
-		repository.insertCountry(form);
+		repC.insertCountry(form);
 	}
 	
 	public void delete(String language) {
-		int i=repository.findLanguageId(language);
-		repository.deleteLanguage(i);
-		repository.deleteCountry(i);
+		int i=repL.findLanguageId(language);
+		repL.deleteLanguage(i);
+		repC.deleteCountry(i);
 	}
 	
 	public List<Form> listAllForms() {
-		return repository.searchAll();
+		return repL.searchAll();
 	}
 	
 	public List<Language> listAllLang() {
-		return repository.searchLanguage();
+		return repL.searchLanguage();
 	}
-	
 }
 

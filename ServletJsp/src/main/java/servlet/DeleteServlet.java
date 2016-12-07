@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import repository.Repository;
 import service.Service;
 
 public class DeleteServlet extends HttpServlet {
