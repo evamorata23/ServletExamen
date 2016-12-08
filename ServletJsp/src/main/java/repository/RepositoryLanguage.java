@@ -12,11 +12,9 @@ import connection.ConnectionH2;
 import connection.ConnectionManager;
 import model.Form;
 import model.Language;
+import repository.Repository;
 
-public class RepositoryLanguage {
-	
-	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
-	ConnectionManager manager = new ConnectionH2();
+public class RepositoryLanguage extends Repository{
 	
 	public List<Language> searchLanguage() {
 		List<Language> listLanguage= new ArrayList<Language>();
@@ -42,24 +40,6 @@ public class RepositoryLanguage {
 		return listLanguage;
 	}
 
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		}catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-		
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-	// insert
 	public void insertLanguage(Form form) {
 		int id=0;
 		Connection conn = manager.open(jdbcUrl);
