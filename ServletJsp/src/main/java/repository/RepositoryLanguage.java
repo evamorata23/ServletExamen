@@ -37,14 +37,6 @@ public class RepositoryLanguage {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
-			try{
-			close(resultSet);
-			close(preparedStatement);
-			}catch(Exception e){
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
 		}
 		manager.close(conn);
 		return listLanguage;
@@ -139,14 +131,6 @@ public class RepositoryLanguage {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
-			try{
-			close(resultSet);
-			close(preparedStatement);
-			}catch(Exception e){
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
 		}
 		manager.close(conn);
 		return listForm;
